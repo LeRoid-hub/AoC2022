@@ -24,14 +24,19 @@ fn part1(contents: &str){
     move2.insert("C", 3);
     let mut score = 0;
     for line in contents.lines() {
-    let players: Vec<char> = line.chars().collect();
     let players = line.split_whitespace().collect::<Vec<_>>();
-    println!("{:?}", players);
-
+        println!("{}{}", players[0], players[1]);
+        println!("{}", move1.get(players[0]).unwrap());
+        let helper1 = move1.get(players[0]).unwrap() + 0; 
+        let helper2 = move2.get(players[1]).unwrap() + 1;
            if (move1.get(players[1]) == move2.get(players[0])) {
                 score += 3;
-           }else if (move1.get(players[1]) > move2.get(players[0]) || move1.get(players[1]) == move1.get("X") && move2.get(players[0]) == move2.get("C")){
+                println!("Draw {}{}", players[0], players[1]);
+           }else if (helper1 == helper2 || move1.get(players[1]) == move1.get("X") && move2.get(players[0]) == move2.get("C")){
                 score += 6;
+                println!("Player 1 wins {}{}", players[0], players[1]);
+           }else{
+                println!("Player 2 wins {}{}", players[0], players[1]);
            }
         score += move1.get(players[1]).unwrap();
     }
