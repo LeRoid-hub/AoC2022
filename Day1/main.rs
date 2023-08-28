@@ -10,7 +10,7 @@ fn main() {
 
     println!("With text:\n{contents}");
     
-    //part1(&contents);
+    part1(&contents);
     part2(&contents); 
 }
 
@@ -20,7 +20,6 @@ fn part1(contents: &str){
     let mut current_Calories = 0;
     for line in contents.lines() {
         if line.trim().is_empty(){
-            println!("current_Calories: {}", current_Calories);
             if current_Calories > most_Calories {
                 most_Calories = current_Calories;
             }
@@ -49,7 +48,6 @@ fn part2 (contents: &str){
         most_Calories[0] += current_Calories;
     }
     most_Calories.sort();
-    println!("Calories: {:?}", most_Calories);
     let combined_calories = most_Calories[1] + most_Calories[2] + most_Calories[3];
     println!("Combined Calories: {}", combined_calories);
 
