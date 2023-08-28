@@ -14,11 +14,11 @@ fn main() {
 }
 
 fn part1(contents: &str){
-    let move1 = HashMap::new();
+    let mut move1 = HashMap::new();
     move1.insert("X", 1);    //Stein
     move1.insert("Y", 2);    //Papier
     move1.insert("Z", 3);    //Schere
-    let move2 = HashMap::new();
+    let mut move2 = HashMap::new();
     move2.insert("A", 1);
     move2.insert("B", 2);
     move2.insert("C", 3);
@@ -26,13 +26,14 @@ fn part1(contents: &str){
     for line in contents.lines() {
     let players: Vec<char> = line.chars().collect();
     let players = line.split_whitespace().collect::<Vec<_>>();
+    println!("{:?}", players);
 
-           if (move1.get(players[2]) == move2.get(players[0])) {
+           if (move1.get(players[1]) == move2.get(players[0])) {
                 score += 3;
-           }else if (move1.get(players[2]) > move2.get(players[0]) || move1.get(players[2]) == move1.get("X") && move2.get(players[0]) == move2.get("C")){
+           }else if (move1.get(players[1]) > move2.get(players[0]) || move1.get(players[1]) == move1.get("X") && move2.get(players[0]) == move2.get("C")){
                 score += 6;
            }
-        score += move1.get(players[2]).unwrap();
+        score += move1.get(players[1]).unwrap();
     }
     println!("Score: {}", score);
 }
