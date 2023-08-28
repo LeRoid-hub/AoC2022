@@ -24,13 +24,15 @@ fn part1(contents: &str){
     move2.insert("C", 3);
     let mut score = 0;
     for line in contents.lines() {
-        let players = line.chars().collect();
+    let players: Vec<char> = line.chars().collect();
+    let players = line.split_whitespace().collect::<Vec<_>>();
+
            if (move1.get(players[2]) == move2.get(players[0])) {
                 score += 3;
            }else if (move1.get(players[2]) > move2.get(players[0]) || move1.get(players[2]) == move1.get("X") && move2.get(players[0]) == move2.get("C")){
                 score += 6;
            }
-        score += move1.get(players[2]);
+        score += move1.get(players[2]).unwrap();
     }
     println!("Score: {}", score);
 }
